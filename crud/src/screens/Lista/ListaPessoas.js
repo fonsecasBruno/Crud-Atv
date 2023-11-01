@@ -1,7 +1,8 @@
 import { StyleSheet, FlatList, View } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { Button, Card, Dialog, FAB, MD3Colors, Portal, Text } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
+
 
 export default function ListaPessoas({navigation, route}) {
 
@@ -58,6 +59,46 @@ export default function ListaPessoas({navigation, route}) {
   return (
     <View style={styles.container}>
         
+        <Text variant='titleLarge' style={styles.title}>Lista de Pessoas</Text>
+
+        <FlatList
+            style={styles.container}
+            data={pessoas}
+            renderItem={({ item }) => (
+                <Card
+                    mode='outlined'
+                    style={styles.card}
+                >
+                    <Card.Content
+                        style={styles.CardContent}
+                    >
+
+                        <View>
+                            <Text variant='titleMedium'>{item?.nome}</Text>
+                            <Text variant='bodyLarge'>Idade: {item?.idade}</Text>
+                            <Text variant='bodyLarge'>Matricula: {item?.matricula}</Text>
+                            <Text variant='bodyLarge'>Curso:{item?.curso}</Text>
+                        </View>
+
+                    </Card.Content>
+
+                    <Card.Actions>
+                        <Button onPress={() => navigation.push('FormPessoas', {acao: editarPessoa, pessoa: item})}>Editar</Button>
+                        <Button onPress={() => {pessoaASerExcluida(item)
+                        showModal()
+                        }}>Excluir</Button>
+                    </Card.Actions>
+
+                </Card>
+            )}
+        />
+
+        <FAB
+            icon='plus'
+            style={styles.fab}
+            onPress={() => navigation.push('FormPessoas', {acao: adicionarPessoa})}
+        />
+
     </View>
   )
 }
