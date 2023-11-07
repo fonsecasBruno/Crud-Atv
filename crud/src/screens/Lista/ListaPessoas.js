@@ -103,4 +103,34 @@ export default function ListaPessoas({navigation, route}) {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    title: {
+      fontWeight: 'bold',
+      margin: 10
+    },
+    fab: {
+      position: 'absolute',
+      margin: 16,
+      right: 0,
+      bottom: 0,
+    },
+    list: {
+      width: '90%',
+    },
+    card: {
+      marginTop: 15
+    },
+    cardContent: {
+      flexDirection: 'row',
+      backgroundColor: MD3Colors.primary70,
+      borderWidth: 2,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      paddingBottom: 15
+    }
+})
